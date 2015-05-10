@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -46,7 +49,10 @@ public class Pessoa implements Serializable {
     private Date dataDeCadastro;
     
     // FK representando relacionamento com tabela Sexo
-    private Integer idSexo;
+    @ManyToOne(optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "PessoaSexo"))
+    
+    private Pessoa pessoa;
 
     public Pessoa() {
     }
@@ -107,14 +113,15 @@ public class Pessoa implements Serializable {
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public Integer getIdSexo() {
-        return idSexo;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdSexo(Integer idSexo) {
-        this.idSexo = idSexo;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 5;
