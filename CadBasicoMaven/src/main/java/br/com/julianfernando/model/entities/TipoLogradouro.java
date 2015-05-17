@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,7 +28,6 @@ public class TipoLogradouro implements Serializable {
     private String descricaoTipoLogradouro;
     
     @OneToMany(mappedBy = "tipologradouro", fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @javax.persistence.ForeignKey(name = "EnderecoTipoLogradouro"))
     private List<Endereco> enderecos;
 
     public TipoLogradouro() {

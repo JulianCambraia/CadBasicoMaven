@@ -20,7 +20,7 @@ public class PhaseListenerCadBasico implements PhaseListener {
     public void afterPhase(PhaseEvent fase) {
         // tentando restaurar a visão
         if (fase.getPhaseId().equals(PhaseId.RENDER_RESPONSE)) {
-            System.out.println("Depois da fase: " + getPhaseId());
+            System.out.println("Depois da fase: " + fase.getPhaseId());
             // inicia a transação e seta a sessão
             Session session = FacesContextUtil.getRequestSession();  
             try {
@@ -42,7 +42,7 @@ public class PhaseListenerCadBasico implements PhaseListener {
     public void beforePhase(PhaseEvent fase) {
          // tentando restaurar a visão
         if (fase.getPhaseId().equals(PhaseId.RESTORE_VIEW)) {
-            System.out.println("antes da fase: " + getPhaseId() );
+            System.out.println("antes da fase: " + fase.getPhaseId() );
             
             // inicia a transação e seta a sessão
             Session session = HibernateUtil.getSessionFactory().openSession();

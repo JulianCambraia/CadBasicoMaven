@@ -32,8 +32,6 @@ public class Sexo implements Serializable {
     private String descricao;
 
     @OneToMany(mappedBy = "sexo", fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @javax.persistence.ForeignKey(name = "PessoaSexo"))
-    
     private List<Pessoa> pessoas;
             
     public Sexo() {

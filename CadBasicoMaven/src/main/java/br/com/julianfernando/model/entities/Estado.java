@@ -30,8 +30,7 @@ public class Estado implements Serializable {
     @Column(name = "NomeEstado", length = 40, nullable = false)
     private String nomeEstado;
     
-    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @javax.persistence.ForeignKey(name = "EnderecoEstado"))        
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)     
     private List<Endereco> enderecos;
 
     public Estado() {

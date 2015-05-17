@@ -1,6 +1,5 @@
 package br.com.julianfernando.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,10 +27,10 @@ public class HibernateUtil {
             
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             
-            Session session = sessionFactory.openSession();
+           // Session session = sessionFactory.openSession();
             System.out.println("Session Factory criada com sucesso!!!.");
         } catch (Exception ex) {
-            System.out.println("Ocorreu um erro ao iniciar a SF. " + ex);
+            System.out.println("Ocorreu um erro ao iniciar a SF." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }

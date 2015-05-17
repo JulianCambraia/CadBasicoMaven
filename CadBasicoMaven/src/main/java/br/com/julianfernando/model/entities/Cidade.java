@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,11 +23,10 @@ public class Cidade implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name = "idCidade", nullable = false)
+    @Column(name = "IdCidade", nullable = false)
     private Integer idCidade;
     
-    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @javax.persistence.ForeignKey(name = "EnderecoCidade"))
+    @OneToMany(targetEntity = Endereco.class,mappedBy = "cidade", fetch = FetchType.LAZY)    
     private List<Endereco> enderecos;
     
     @Column(name="nome",nullable = false , length = 100)
