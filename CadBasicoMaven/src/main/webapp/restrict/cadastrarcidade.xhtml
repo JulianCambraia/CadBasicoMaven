@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <p:fieldset legend="Cadastrar Cidades">
+            <br/>
+            <p:tabView id="tbv1">
+                <p:tab title="Cidade">
+                    <h:form prependId="false" id="formCidade">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <ui:remove><h:outputLabel/></ui:remove>
+                            <h:inputHidden id="cidade" value="#{CidadeMB.cidade.idCidade}"/>
+                            
+                                           
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>

@@ -13,14 +13,15 @@ import org.hibernate.criterion.DetachedCriteria;
 /**
  * 
  * @author julian
+ * @param <T>
  */
 public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    private Class<T> classe;
+    private final Class<T> classe;
     
-    private Session session;
+    private final Session session;
 
     // obriga quem instanciar esta classe a passar a classe genérica e uma sessão
     public HibernateDAO(Class<T> classe, Session session) {

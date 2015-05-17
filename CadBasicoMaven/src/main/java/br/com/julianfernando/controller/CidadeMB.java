@@ -43,30 +43,27 @@ public class CidadeMB implements Serializable {
         return cidadeDAO;
     }
     
-    public String editCidade() {
-        return "/restrict/cadastrarcidade.faces";
-    }
-    
     public String addCidade() {
+        // se o objeto Cidade não existir ou for o primeiro registro a ação será de insert do contrário será update
         if (cidade.getIdCidade() == null || cidade.getIdCidade() == 0) {
             insertCidade();
         } else {
             updateCidade();
         }
+        // após inserção ou atualização de objeto Cidade limpá-lo
         limparCidade();
         return null;
-            
     }
+    
+    public String editCidade() {
+        return "/restrict/cadastrarcidade.faces";
+    }
+    
     
     public void deleteCidade() {
         cidadeDAO().remove(cidade); 
     }
     
-    public String limparCidade() {
-        cidade = new Cidade();
-        return "/restrict/cadastrarcidade.faces";
-    }
-
     private void insertCidade() {
         cidadeDAO().save(cidade);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Gravação efetuada com sucesso","") );
@@ -76,6 +73,12 @@ public class CidadeMB implements Serializable {
         cidadeDAO().update(cidade);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atualização efetuada com sucesso","") );
     }
+    
+    public String limparCidade() {
+        cidade = new Cidade();
+        return "/restrict/cadastrarcidade.faces";
+    }
+
 
     public Cidade getCidade() {
         return cidade;
@@ -93,7 +96,4 @@ public class CidadeMB implements Serializable {
     public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
-
-    
-    
 }
