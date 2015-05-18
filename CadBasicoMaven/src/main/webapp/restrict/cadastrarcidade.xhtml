@@ -16,14 +16,55 @@
                     <h:form prependId="false" id="formCidade">
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
-                            <ui:remove><h:outputLabel/></ui:remove>
-                            <h:inputHidden id="cidade" value="#{CidadeMB.cidade.idCidade}"/>
-                            
-                                           
+                            <h:outputLabel/>
+                            <h:inputHidden id="idCidade" value="#{CidadeMB.cidade.idCidade}"/>
+                            <h:outputLabel for="nomeCidade" value="Nome:" />
+                            <p:inputText id="nomeCidade" size="40" value="#{CidadeMB.cidade.nome}" onkeyup="this.value = this.value.toUpperCase()" required="true" requiredMessage="o campo Nome é de preenchimento obrigatório"/>
+
+                            <p:panel>
+                                <p:commandButton value="Salvar" action="#{CidadeMB.addCidade}" icon="ui-icon ui-icon-disk" update="@form :formtable"/>
+                                <p:commandButton value="Cancelar" actionListener="#{CidadeMB.limparCidade}" icon="ui-icon ui-icon-close" update="@form"/>
+                            </p:panel>
+
                         </h:panelGrid>
                     </h:form>
                 </p:tab>
             </p:tabView>
+
+            <h:form id="formtable">
+                <p:growl id="msg1">
+                    <p:dataTable id="idTable" var="cidade" value="#{CidadeMB.cidades}"
+                                 paginator="true" rows="10" emptyMessage="Nenhum registro encontrado"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+                                 {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">Lista de Cidades</f:facet>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{cidade.nome}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ações"/>
+                            </f:facet>
+                            <p:commandButton value="Editar" icon="ui-icon ui-icon-pencil"
+                                             process="@this" update=":tbv1:formCidade">
+                                <f:setPropertyActionListener target="#{CidadeMB.cidade}" value="#{cidade}"/>
+                            </p:commandButton>
+                            <p:commandButton value="Remover" action="#{CidadeMB.deleteCidade}"
+                                             icon="ui-icon ui-icon-close"
+                                             update="@form">
+                                <f:setPropertyActionListener target="#{CidadeMB.cidade}" value="#{cidade}"/>
+                            </p:commandButton>
+
+
+                        </p:column> 
+                    </p:dataTable>
+                </p:growl>
+            </h:form>    
         </p:fieldset>
     </ui:define>
 
