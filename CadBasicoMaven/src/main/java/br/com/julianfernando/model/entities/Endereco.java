@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "endereco")
-class Endereco implements Serializable {
+public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,6 +61,7 @@ class Endereco implements Serializable {
     @JoinColumn(name = "IdCidade", referencedColumnName = "IdCidade", foreignKey = @javax.persistence.ForeignKey(name = "EnderecoCidade"))
     private Cidade cidade;
 
+    
     public Endereco() {
         this.cidade = new Cidade();
         this.estado = new Estado();
