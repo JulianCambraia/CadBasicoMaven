@@ -45,7 +45,7 @@ public class PessoaMB implements Serializable {
         return enderecoDAO;
     }
     
-    private String limparPessoa() {
+    public String limparPessoa() {
         pessoa = new Pessoa();
         endereco = new Endereco();
         return editPessoa();
