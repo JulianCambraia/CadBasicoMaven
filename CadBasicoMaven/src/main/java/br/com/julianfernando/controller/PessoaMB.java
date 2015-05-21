@@ -6,6 +6,7 @@ import br.com.julianfernando.model.entities.Pessoa;
 import br.com.julianfernando.model.entities.Endereco;
 import br.com.julianfernando.util.FacesContextUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -56,7 +57,11 @@ public class PessoaMB implements Serializable {
     }
     
     public String addPessoa() {
+        // seta a data em que está sendo realizado o cadastramento da pessoa
+        Date data = new Date();
+        
         if (pessoa.getIdPessoa() == null || pessoa.getIdPessoa() == 0) {
+            pessoa.setDataDeCadastro(data);
             insertPessoa();
         } else {
             updatePessoa();
