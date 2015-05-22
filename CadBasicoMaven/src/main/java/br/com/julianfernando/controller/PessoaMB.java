@@ -70,16 +70,21 @@ public class PessoaMB implements Serializable {
     }
     
     public void deletePessoa() {
+        enderecoDAO().remove(endereco);
         pessoaDAO().remove(pessoa);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro excluído com sucesso",""));
     }
     
     private void insertPessoa() {
         pessoaDAO().save(pessoa);
+        endereco.setPessoa(pessoa);
+        enderecoDAO().save(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Gravação efetuada com sucesso",""));
     }
 
     private void updatePessoa() {
         pessoaDAO().update(pessoa);
+        enderecoDAO().update(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização efetuada com sucesso", ""));
     }
 

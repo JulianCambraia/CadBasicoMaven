@@ -55,19 +55,65 @@
                                             locale="pt_BR" navigator="true" effect="explode" pattern="dd/MM/yyyy"/>
 
                             </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid2">
-                                <p:panel>
-                                    <p:commandButton value="Salvar" action="#{pessoaMB.addPessoa}" icon="ui-icon ui-icon-disk" update="@form"/>
-                                    <p:commandButton value="Cancelar" actionListener="#{pessoaMB.limparPessoa}" icon="ui-icon ui-icon-close" update="@form"/>
-                                </p:panel>                                
-                            </h:panelGrid>
+
                         </p:panel> 
                     </p:tab>
                     <p:tab title="Informações do Endereço" id="infoEndereco">
                         <p:panel header="Informações do Endereço">
                             <p:growl id="msg1"/>
                             <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid1">
+                                <h:outputLabel for="uf" value="Estado:"/>
+                                <h:selectOneMenu id="uf" value="#{pessoaMB.endereco.estado.idEstado}">
+                                    <f:selectItems value="#{EstadoBackinBean.estados}" var="estado"
+                                                   itemValue="#{estado.idEstado}" itemLabel="#{estado.nomeEstado}"/>
+                                </h:selectOneMenu>
 
+                                <h:outputLabel for="cidade" value="Cidade:"/>
+                                <p:selectOneMenu id="cidade" value="#{pessoaMB.endereco.cidade.idCidade}">
+                                    <f:selectItems value="#{CidadeBackingBean.cidades}" var="cidade"
+                                                   itemValue="#{cidade.idCidade}" itemLabel="#{cidade.nome}" />
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="bairro" value="Bairro:"/>
+                                <p:inputText id="bairro" size="100" value="#{pessoaMB.endereco.bairro}" required="true"
+                                             requiredMessage="Campo [Bairro] é de preenchimento obrigatório"
+                                             onkeyup="this.value = this.value.toUpperCase()" />
+
+                                <h:outputLabel for="idTipoEndereco" value="Tipo de Endereço:"/>
+                                <p:selectOneMenu id="idTipoEndereco" value="#{pessoaMB.endereco.tipoendereco.idTipoEndereco}">
+                                    <f:selectItems value="#{TipoEnderecoBackinBean.tiposEndereco}" var="tipoEndereco"
+                                                   itemValue="#{tipoEndereco.idTipoEndereco}" itemLabel="#{tipoEndereco.descricaoTipoEndereco}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="idTipoLogradouro" value="Tipo de Logradouro:"/>
+                                <p:selectOneMenu id="idTipoLogradouro" value="#{pessoaMB.endereco.tipologradouro.idTipoLogradouro}">
+                                    <f:selectItems value="#{TipoLogradouroBackingBean.tiposLogradouro}" var="tipoLogradouro"
+                                                   itemValue="#{tipoLogradouro.idTipoLogradouro}" itemLabel="#{tipoLogradouro.descricaoTipoLogradouro}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="nomeLogradouro" value="Logradouro:"/>
+                                <p:inputText id="nomeLogradouro" size="100" value="#{pessoaMB.endereco.nomeLogradouro}" required="true"
+                                             requiredMessage="Campo [Logradouro] é de preenchimento obrigatório"
+                                             onkeyup="this.value = this.value.toUpperCase()" />
+
+                                <h:outputLabel for="cep" value="CEP:"/>
+                                <p:inputMask id="cep" value="#{pessoaMB.endereco.cep}" size="10" rendered="true"
+                                             requiredMessage="Campo [CEP] é de preenchimento obrigatório" mask="99.999-999" />
+
+                                <h:outputLabel for="numero" value="Número:"/>
+                                <p:inputText id="numero" value="#{pessoaMB.endereco.numero}" size="8" required="true"
+                                             requiredMessage="Campo [Número] é de preenchimento obrigatório" />
+
+                                <h:outputLabel for="complemento" value="Complemento:"/>
+                                <p:inputTextarea id="complemento" value="#{pessoaMB.endereco.complemento}" autoResize="true"
+                                                 maxlength="100" cols="100" rows="5" onkeyup="this.value = this.value.toUpperCase()" />
+
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid2">
+                                <p:panel>
+                                    <p:commandButton value="Salvar" action="#{pessoaMB.addPessoa}" icon="ui-icon ui-icon-disk" update="@form"/>
+                                    <p:commandButton value="Cancelar" actionListener="#{pessoaMB.limparPessoa}" icon="ui-icon ui-icon-close" update="@form"/>
+                                </p:panel>                                
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>

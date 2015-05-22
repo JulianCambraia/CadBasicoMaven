@@ -33,13 +33,13 @@ public class Endereco implements Serializable {
     @Column(name = "NomeLogradouro", length = 120)
     private String nomeLogradouro;
 
-    @Column(name = "CEP", length = 9)
+    @Column(name = "CEP", length = 10)
     private String cep;
 
     @Column(name = "Numero")
     private Integer numero;
 
-    @Column(name = "Complemento", length = 20)
+    @Column(name = "Complemento", length = 1000)
     private String complemento;
 
     @OneToOne(optional = true, fetch = FetchType.LAZY)
@@ -50,12 +50,13 @@ public class Endereco implements Serializable {
     @JoinColumn(name = "IdTipoLogradouro", referencedColumnName = "IdTipoLogradouro", foreignKey = @javax.persistence.ForeignKey(name = "EnderecoTipoLogradouro"))
     private TipoLogradouro tipologradouro;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TipoEndereco tipoendereco;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @JoinColumn(name = "IdEstado", nullable = false, foreignKey = @javax.persistence.ForeignKey(name = "EnderecoEstado"))
     private Estado estado;
+    
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdTipoEndereco", referencedColumnName = "IdTipoEndereco", foreignKey = @javax.persistence.ForeignKey(name = "EnderecoTipoEndereco"))
+    private TipoEndereco tipoendereco;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "IdCidade", referencedColumnName = "IdCidade", foreignKey = @javax.persistence.ForeignKey(name = "EnderecoCidade"))
