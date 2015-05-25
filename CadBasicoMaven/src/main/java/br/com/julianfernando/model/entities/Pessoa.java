@@ -16,46 +16,53 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
- * Representa a entidade Pessoa do Banco de Dados, usando de mapeamento Hibernate com JPA (ORM)
+ * Representa a entidade Pessoa do Banco de Dados, usando de mapeamento
+ * Hibernate com JPA (ORM)
+ *
  * @author julian
  */
 @Entity
-@Table(name="pessoa")
+@Table(name = "pessoa")
 public class Pessoa implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue
     @Column(name = "idPessoa", nullable = false)
     private Integer idPessoa;
-    
-    @Column(name="Name", nullable = false, length = 80)
+
+    @Column(name = "Name", nullable = false, length = 80)
     private String nome;
-    
-    @Column(name="Email", nullable = false, length = 100)
+
+    @Column(name = "Email", nullable = false, length = 100)
     private String email;
-    
-    @Column(name="Telefone", nullable = false, length = 16) // (031)-99999-9999
+
+    @Column(name = "Telefone", nullable = false, length = 16) // (031)-99999-9999
     private String telefone;
-    
-    @Column(name="Cpf", nullable = false, length = 14)
+
+    @Column(name = "Cpf", nullable = false, length = 14)
     private String cpf;
-    
-    @Column(name="DataDeNacimento", nullable = false)
+
+    @Column(name = "DataDeNacimento", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeNascimento;
-    
-    @Column(name="DataDeCadastro", nullable = false)
+
+    @Column(name = "DataDeCadastro", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeCadastro;
-    
-    
+
+    @Column(name = "Login", unique = true, length = 30)
+    private String login;
+    @Column(name = "Senha", length = 40)
+    private String senha;
+    @Column(name = "Permissao", length = 36)
+    private String permissao;
+
     @OneToOne(mappedBy = "pessoa", fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "EnderecoPessoa"))
     private Endereco endereco;
-    
-    
+
     // FK representando relacionamento com tabela Sexo
     @ManyToOne(optional = false)
     @JoinColumn(name = "idSexo", referencedColumnName = "idSexo", foreignKey = @ForeignKey(name = "PessoaSexo"))
@@ -64,7 +71,6 @@ public class Pessoa implements Serializable {
     public Pessoa() {
         this.sexo = new Sexo();
     }
-
 
     public Integer getIdPessoa() {
         return idPessoa;
@@ -129,7 +135,7 @@ public class Pessoa implements Serializable {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-    
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -137,7 +143,31 @@ public class Pessoa implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
