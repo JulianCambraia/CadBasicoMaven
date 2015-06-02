@@ -14,7 +14,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <spring.version>4.0.1.RELEASE</spring.version>
+        <spring.version>3.1.4.RELEASE</spring.version>
         <themes.version>1.0.10</themes.version>
         <primefaces.version>5.2</primefaces.version>
         <jsf.version>2.1.7</jsf.version>
@@ -270,7 +270,8 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
+            <version>4.0.0.M2</version>
+            <type>jar</type>
         </dependency>
         
         <!-- ####### SPRING-SECURITY-CONFIG ######## -->
@@ -349,6 +350,19 @@
             <artifactId>facelets-taglib-jsf20-spring-3</artifactId>
             <version>0.5</version>
         </dependency>
+        
+        <!-- ####### SPRING-SECURITY-TAGLIBS ####### -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-security-acl</artifactId>
+                    <groupId>org.springframework.security</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>     
         
         <!-- ############# SPRING-AOP ############# -->    
         <dependency>
